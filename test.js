@@ -20,7 +20,21 @@ function OnChange(executionContext) {
             Xrm.Page.getControl("lai_guardian_name").setVisible(true);
             Xrm.Page.getControl("lai_guardian_phone").setVisible(true);
         }
+       
+       // System.Console.WriteLine(formContext.getControl("lai_age"));
+        // System.Console.WriteLine(formContext.getControl("lai_age"));
+        // System.Console.WriteLine(formContext.getControl("lai_age"));
 
+        //     formContext.getAttribute("lai_birthdate").setVisible(false);
+        //     formContext.getAttribute("lai_guardian_phone").setVisible(false);
+        //     formContextgetAttribute("lai_guardian_name").setVisible(false);
+        //     System.Console.WriteLine(formContext.getAttribute("lai_age").getValue());
+        //     System.Console.WriteLine(formContext.getAttribute("lai_birthdate").getValue());
+        // } else {
+        //     formContext.getControl("lai_guardian_name").setVisible(true);
+        //     formContext.getControl("lai_guardian_phone").setVisible(true);
+        //     System.Console.WriteLine("else fired");
+        // }
         // for(var c in fetchXml.getAttribute("lai_age"))  {
         //     System.Console.WriteLine(fetchXml.getAttribute("lai_age").getValue() > 18);
         //     //fetchXml.getAttribute("lai_age").getValue() > 18
