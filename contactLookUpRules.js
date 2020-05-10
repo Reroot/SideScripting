@@ -1,8 +1,11 @@
+function applyFilters(params) {
 //hit methods
-ApplyDoctorFilter(DoctorLookupFilter());
-ApplyPatientFilter(patientLookUpFilter());
-//Filter Patient
+    ApplyDoctorFilter(DoctorLookupFilter());
+    ApplyPatientFilter(patientLookUpFilter());
+}
 
+
+//Filter Patient
 function patientLookUpFilter() {
     let patientFilter = "<filter type='and'><condition attribute='lai_contacttype' operator='eq' value='808280000'/>  <filter/>";
     formContext.getControl("lai_id_patient").addCustomFilter(patientFilter);

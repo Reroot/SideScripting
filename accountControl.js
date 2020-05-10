@@ -1,13 +1,4 @@
-disable(getContactType);
-
-//Disabling by contact type, and age
-function getContactType() {
-    let formContext = executionContext().getControl();
-    let contactType = formContext.getAttribuite("lai_contact_type").getValue();
-    //let age = formContext.getAttribuite("lai_age").getValue();
-}
-
-function disable(executionContext) {
+controlBased(e) {
     let formContext = executionContext();
     let contactType = formContext.getAttribuite("lai_contact_type").getValue();
     //if patient is a contact type, show body stuff and hie the liseense stuff
@@ -21,21 +12,71 @@ function disable(executionContext) {
         formContext.getControl("lai_licensetype").setValue(null);
         formContext.getControl("lai_licensetype").setVisible(false);
         formContext.getControl("lai_specialty").setVisible(false);
-    } else if(contactType == '808280001') { //doctor
+    }
+    if(contactType == '808280001') { //doctor
         formContext.getControl("lai_id_insuranceplan").setVisible(false);
         formContext.getControl("lai_id_serviceprovier").setVisible(false);
-        //formContext.getControl("lai_id_serviceprovier").setRequiredLevel("none");
         formContext.getControl("lai_id_height_cm").setVisible(false);
         formContext.getControl("lai_id_weight_cm").setVisible(false);
         formContext.getControl("lai_bodymassindex").setVisible(false);
         formContext.getControl("lai_licensetype").setValue("Doctor");
         formContext.getControl("lai_licensetype").setVisible(true);
         formContext.getControl("lai_specialty").setVisible(true);
-    } else {
-        Xrm.Utility.alertDialog(e.message);
     }
 }
 
+function ShowHideAttribute(attribute, showhide) {
+
+    if (Xrm.Page.getControl(attribute) != null)
+        Xrm.Page.getControl(attribute).setVisible(showhide)
+}
+
+function SetFieldRequiredLevel(attribute, yesno) {
+
+    if (Xrm.Page.getAttribute(attribute) != null)
+        Xrm.Page.getAttribute(attribute).setRequiredLevel(yesno);
+}
+
+function ChangeFieldLabel(attribute, Label) {
+
+    if (Xrm.Page.getControl(attribute) != null)
+        Xrm.Page.getControl(attribute).setLabel(Label);
+}
+
+// disableForm(e) {
+//     let formContext = executionContext();
+//     let contactType = formContext.getAttribuite("lai_contact_type").getValue();
+//     //if patient is a contact type, show body stuff and hie the liseense stuff
+//     if(contactType == '808280000') {
+//         formContext.getControl("lai_id_insuranceplan").setVisible(true);
+//         formContext.getControl("lai_id_serviceprovier").setVisible(true);
+//         formContext.getControl("lai_id_serviceprovier").setRequiredLevel("none");
+//         formContext.getControl("lai_id_height_cm").setVisible(true);
+//         formContext.getControl("lai_id_weight_cm").setVisible(true);
+//         formContext.getControl("lai_bodymassindex").setVisible(true);
+//         formContext.getControl("lai_licensetype").setValue(null);
+//         formContext.getControl("lai_licensetype").setVisible(false);
+//         formContext.getControl("lai_specialty").setVisible(false);
+//     } else if(contactType == '808280001') { //doctor
+//         formContext.getControl("lai_id_insuranceplan").setVisible(false);
+//         formContext.getControl("lai_id_serviceprovier").setVisible(false);
+//         //formContext.getControl("lai_id_serviceprovier").setRequiredLevel("none");
+//         formContext.getControl("lai_id_height_cm").setVisible(false);
+//         formContext.getControl("lai_id_weight_cm").setVisible(false);
+//         formContext.getControl("lai_bodymassindex").setVisible(false);
+//         formContext.getControl("lai_licensetype").setValue("Doctor");
+//         formContext.getControl("lai_licensetype").setVisible(true);
+//         formContext.getControl("lai_specialty").setVisible(true);
+//     } else {
+//         Xrm.Utility.alertDialog(e.message);
+//     }
+// }
+//Disabling by contact type, and age
+// function getContactType() {
+//     let formContext = executionContext().getControl();
+//     let contactType = formContext.getAttribuite("lai_contact_type").getValue();
+//     //let age = formContext.getAttribuite("lai_age").getValue();
+// }
 
     //get account/contact type console.log(Xrm.Page.getControl("lai_accounttype")._options[1].text);
     // console.log(Xrm.Page.getControl("lai_accounttypename"));
