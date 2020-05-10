@@ -26,19 +26,16 @@ controlBased(e) {
 }
 
 function ShowHideAttribute(attribute, showhide) {
-
     if (Xrm.Page.getControl(attribute) != null)
         Xrm.Page.getControl(attribute).setVisible(showhide)
 }
 
 function SetFieldRequiredLevel(attribute, yesno) {
-
     if (Xrm.Page.getAttribute(attribute) != null)
         Xrm.Page.getAttribute(attribute).setRequiredLevel(yesno);
 }
 
 function ChangeFieldLabel(attribute, Label) {
-
     if (Xrm.Page.getControl(attribute) != null)
         Xrm.Page.getControl(attribute).setLabel(Label);
 }
