@@ -1,24 +1,18 @@
-function applyFilters(params) {
-//hit methods
-    ApplyDoctorFilter(DoctorLookupFilter());
-    ApplyPatientFilter(patientLookUpFilter());
-}
-
-
-//Filter Patient
-function patientLookUpFilter() {
+function lookupFilters() {
+    
+    console.log(formContext.getControl("lai_id_patient"));
+    let formContext = executionContext.getFormContext();
     let patientFilter = "<filter type='and'><condition attribute='lai_contacttype' operator='eq' value='808280000'/>  <filter/>";
     formContext.getControl("lai_id_patient").addCustomFilter(patientFilter);
-}
-//Apply Patient
-function ApplyPatientFilter(executionContext) {
+    
     try {
-        let formContext = executionContext().getFormContext;
         formContext.getControl("lai_id_patient").addPreSearch(patientLookUpFilter());
     } catch (e) {
         Xrm.Utility.alertDialog(e.message);
     }
 }
+
+
 //Doctor Filter
 function DoctorLookupFilter() {
     let docFilter = "<filter type='and'><condition attribute='lai_contacttype' operator='eq' value='808280001'/>  <filter/>";
@@ -32,6 +26,11 @@ function ApplyDoctorFilter(executionContext) {
         Xrm.Utility.alertDialog(e.message);
     }
 }
+}
+
+
+
+
 
 
 

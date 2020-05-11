@@ -1,5 +1,99 @@
-controlBased(e) {
-    let formContext = executionContext();
+function controlBased(executioncontext) {
+    let formContext = executioncontext.getFormContext();
+    let accountType = formContext.getAttribute("lai_accounttype").getValue();
+ console.log(accountType);
+    //let accountType= formContext.ge
+      //console.log(accountType);
+    if(accountType == '808280000') {
+        formContext.getControl("lai_id_insuranceplan").setVisible(true);
+        formContext.getControl("lai_id_serviceprovier").setVisible(true);
+        formContext.getControl("lai_id_serviceprovier").setRequiredLevel("none");
+        formContext.getControl("lai_bodymassindex").setVisible(true);
+        formContext.getControl("lai_licensetype").setValue(null);
+        formContext.getControl("lai_licensetype").setVisible(false);
+        formContext.getControl("lai_specialty").setVisible(false);
+    }
+    if(accountType == '808280001') { //doctor
+        formContext.getControl("lai_id_insuranceplan").setVisible(false);
+        formContext.getControl("lai_id_serviceprovier").setVisible(false);
+        formContext.getControl("lai_id_height_cm").setVisible(false);
+        formContext.getControl("lai_id_weight_cm").setVisible(false);
+        formContext.getControl("lai_bodymassindex").setVisible(false);
+        formContext.getControl("lai_licensetype").setValue("Doctor");
+        formContext.getControl("lai_licensetype").setVisible(true);
+        formContext.getControl("lai_specialty").setVisible(true);
+    }
+}
+
+
+function controlBased(executioncontext) {
+    let formContext = executioncontext.getFormContext();
+    let accountType = formContext.getAttribute("lai_accounttype").getValue();
+ console.log(accountType);
+    //let accountType= formContext.ge
+      //console.log(accountType);
+    console.log(Xrm.Page.getControl("lai_accounttype"));
+    if (formContext.getControl("lai_accounttype")._options[1].text == "Insurance Company") {
+        console.log(formContext.getControl("lai_accounttype")._options[1].text);
+        Xrm.Page.getControl("lai_companytype").setVisible(true);
+        
+    } else if ((formContext.getControl("lai_accounttype")._options[2].text) == "Service Provider") {
+        
+        //Xrm.Page.getControl("lai_providertypename".setVisible(true));
+    } 
+    //if patient is a contact type, show body stuff and hie the liseense stuff
+
+}
+
+
+//working with on change pass of execution pareamater 
+function controlBased(executioncontext) {
+    let formContext = executioncontext.getFormContext();
+    
+    //let accountType= formContext.ge
+      //console.log(accountType);
+    console.log(Xrm.Page.getControl("lai_accounttype"));
+    if (Xrm.Page.getControl("lai_accounttype")._options[1].text == "Insurance Company") {
+
+        Xrm.Page.getControl("lai_companytype").setVisible(true);
+        
+    } else if ((Xrm.Page.getControl("lai_accounttype")._options[2].text) == "Service Provider") {
+        //Xrm.Page.getControl("lai_providertypename".setVisible(true));
+    } 
+    
+}
+
+
+//wokring on account form
+function controlBased() {
+    //var formContext = executionContext.getFormContext();
+    //let accountType= formContext.getAttribuite("lai_accounttype_type").getValue();
+      //console.log(accountType);
+    console.log(Xrm.Page.getControl("lai_accounttype")._options[1]);
+    if (Xrm.Page.getControl("lai_accounttype")._options[1].text == "Insurance Company") {
+        console.log("insurance pass");
+        //console.log(Xrm.Page.getControl("lai_companytype.fieldControl-option-set-select".getValue()));
+        //Xrm.Page.getControl("lai_companytype".setVisible(true));
+        //Xrm.Page.getControl("lai_accounttype")._options[1].
+        //Xrm.Page.getControl("lai_accounttype".setVisible(false));
+        //console.log(Xrm.Page.getControl("lai_insuranceparticipationname"));
+                //for(let i = 1;i<3;i++) {
+                 // console.log(Xrm.Page.getControl("lai_accounttype")._options[i]);
+                  //Xrm.Page.getControl("lai_accounttype")._options[i].setVisible(false);
+        //}
+    } else if ((Xrm.Page.getControl("lai_accounttype")._options[2].text) == "Service Provider") {
+        console.log("service provider pass");
+        //Xrm.Page.getControl("lai_providertypename".setVisible(true));
+    } else {
+        console.log("Fail");
+    }
+    
+}
+
+
+
+function controlBased(e) {
+    formContext = executionContext.getFormContext();
     let contactType = formContext.getAttribuite("lai_contact_type").getValue();
     //if patient is a contact type, show body stuff and hie the liseense stuff
     if(contactType == '808280000') {
@@ -76,28 +170,29 @@ function ChangeFieldLabel(attribute, Label) {
 // }
 
     //get account/contact type console.log(Xrm.Page.getControl("lai_accounttype")._options[1].text);
-    // console.log(Xrm.Page.getControl("lai_accounttypename"));
-    // console.log(Xrm.Page.getControl("accountclassificationcodename"));
-    //let filter1 = "<filter type='and'><condition attribute='lai_accounttype' operator='eq' value='808280000'/><filter/>";
-    //Xrm.Page.getControl("accountid").addCustomFilter(filter1);
-    //console.log(Xrm.Page.getControl("lai_accounttype").getValue());
-    //.addCustomFilter(""));
-    // if (Xrm.Page.getControl("lai_accounttype")._options[1].text == "Insurance Company") {
+    //console.log(Xrm.Page.getControl("lai_accounttypename"));
+    //console.log(Xrm.Page.getControl("accountclassificationcodename"));
+    let filter1 = "<filter type='and'><condition attribute='lai_accounttype' operator='eq' value='808280000'/><filter/>";
+    Xrm.Page.getControl("accountid").addCustomFilter(filter1);
+    console.log(Xrm.Page.getControl("lai_accounttype").getValue());
+    if (Xrm.Page.getControl("lai_accounttype")._options[1].text == "Insurance Company") {
 
-        //console.log(Xrm.Page.getControl("lai_companytype.fieldControl-option-set-select".getValue()));
-        //Xrm.Page.getControl("lai_companytype".setVisible(true));
-        //Xrm.Page.getControl("lai_accounttype")._options[1].
-        //
-        //Xrm.Page.getControl("lai_accounttype".setVisible(false));
-        //console.log(Xrm.Page.getControl("lai_insuranceparticipationname"));
-        //         for(let i = 1;i<3;i++) {
-        //           console.log(Xrm.Page.getControl("lai_accounttype")._options[i]);
-        //           Xrm.Page.getControl("lai_accounttype")._options[i].setVisible(false);
-        //         
-        //}
-    // } else if ((Xrm.Page.getControl("lai_accounttype")._options[2].text) == "Service Provider") {
-    //     //Xrm.Page.getControl("lai_providertypename".setVisible(true));
-    // } else {
+        console.log(Xrm.Page.getControl("lai_companytype.fieldControl-option-set-select".getValue()));
+        Xrm.Page.getControl("lai_companytype".setVisible(true));
+        Xrm.Page.getControl("lai_accounttype")._options[1].
+        
+        Xrm.Page.getControl("lai_accounttype".setVisible(false));
+        console.log(Xrm.Page.getControl("lai_insuranceparticipationname"));
+                for(let i = 1;i<3;i++) {
+                  console.log(Xrm.Page.getControl("lai_accounttype")._options[i]);
+                  Xrm.Page.getControl("lai_accounttype")._options[i].setVisible(false);
+        }
+    } else if ((Xrm.Page.getControl("lai_accounttype")._options[2].text) == "Service Provider") {
+        //Xrm.Page.getControl("lai_providertypename".setVisible(true));
+    } 
+    
+    
+    //else {
     // }
 
     //console.log(Xrm.Page.getControl("lai_accounttype").getAttribuite('808280000'));

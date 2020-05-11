@@ -1,3 +1,4 @@
+
 function getCommonRetrive(query)
 {
     var getReturn = null;

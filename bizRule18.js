@@ -1,8 +1,8 @@
 function preferredmethod(executionContext) {
     formContext = executionContext.getFormContext();
-    var d = new Date();
-    var n = d.getFullYear();
-    var agefix = 0;//get age from birthday
+    lat d = new Date();
+    let n = d.getFullYear();
+    let agefix = 0;//get age from birthday
     try {
        debugger;
        agefix = (n) - formContext.getAttribute("lai_birthdate").getValue().getFullYear();
