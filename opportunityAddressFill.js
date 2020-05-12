@@ -10,6 +10,10 @@ function opportunityAddressFill(executionContext) {
     req.onreadystatechange = function() {
         if (this.readyState === 4) {
             req.onreadystatechange = null;
+            let load = req.onload() = () => {
+                console.log(xhr.response);
+            }
+
             if (this.status === 200) {
                 var results = JSON.parse(this.response);
                 for (var i = 0; i < results.value.length; i++) {
@@ -36,7 +40,8 @@ function opportunityAddressFill(executionContext) {
         }
     };
     req.send();
-    console.log(req);
+
+    console.log(req.results);
     //var formContext = executioncontext.getFormContext();
 }
 
